@@ -27,11 +27,11 @@ matrix:
     - env: NAME="Java Format"
       jdk: oraclejdk8
       before_install: true
-      install: mvn compile
+      install: true
       before_script: true
       script:
-        - mvn formatter:validate
-        - mvn formatter:format
+        - mvn --quiet formatter:validate
+        - mvn --quiet formatter:format
         - git diff
     - env: NAME="Python Map Tools"
       install: true
