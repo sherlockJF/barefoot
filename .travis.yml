@@ -33,12 +33,9 @@ matrix:
       jdk: oraclejdk8
       before_install: true
       install: mvn formatter:format
-      before_script: true
+      before_script: git config color.ui true
       script:
-        # Display the differenced between the submitted code and formatted code
-        - git diff
-        # Fail if there are any differences
-        - git diff-index --quiet HEAD --
+        - git diff --exit-code
 services:
   - docker
 before_install:
