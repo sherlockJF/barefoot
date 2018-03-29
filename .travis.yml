@@ -37,7 +37,7 @@ matrix:
       before_script: true
       script:
         - git diff-index --quiet HEAD --
-        - echo 'If this failed, run "mvn formatter:format" on your code using JDK 8+. See git diff for required changes.'
+        - # If this failed, run "mvn formatter:format" on your code using JDK 8+. See git diff below for required changes.
       after_failure:
         - git diff
 services:
