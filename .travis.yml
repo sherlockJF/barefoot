@@ -27,6 +27,7 @@ matrix:
     - env: NAME="Java Format"
       jdk: oraclejdk8
       before_install: true
+      install: mvn compile
       before_script: true
       script:
         - mvn formatter:validate
