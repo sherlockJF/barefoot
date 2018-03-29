@@ -36,7 +36,7 @@ matrix:
       before_script: true
       script:
         - git diff --exit-code
-      after_failure: echo 'Run "mvn formatter:format" on your code using Java 8+'
+      after_failure: echo 'To fix this failure automatically, run "mvn formatter:format" on your code using Java 8+'
 services:
   - docker
 before_install:
