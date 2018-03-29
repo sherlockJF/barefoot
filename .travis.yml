@@ -35,8 +35,10 @@ matrix:
       install: mvn formatter:format
       before_script: true
       script:
-        - git diff-index --quiet HEAD --
+        # Display the differenced between the submitted code and formatted code
         - git diff
+        # Fail if there are any differences
+        - git diff-index --quiet HEAD --
 services:
   - docker
 before_install:
