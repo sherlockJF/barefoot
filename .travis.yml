@@ -36,7 +36,6 @@ matrix:
       before_script: true
       script:
         - git diff-index --quiet HEAD --
-      after_failure:
         - git diff
 services:
   - docker
