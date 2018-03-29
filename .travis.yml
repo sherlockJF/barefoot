@@ -33,7 +33,7 @@ matrix:
       jdk: oraclejdk8
       before_install: true
       install: mvn formatter:format
-      before_script: git config color.ui true
+      before_script: true
       script:
         - git diff --exit-code
 services:
