@@ -24,21 +24,22 @@ matrix:
         - python util/submit/batch.py --host localhost --port 1234 --file src/test/resources/com/bmwcarit/barefoot/matcher/x0001-001.json
       after_failure:
         - docker logs barefoot-matcher
-    - env: NAME="Java Format"
-      jdk: oraclejdk8
-      before_install: true
-      install: true
-      before_script: true
-      script:
-        - mvn --quiet formatter:validate
-        - mvn --quiet formatter:format
-        - git diff
     - env: NAME="Python Map Tools"
       install: true
       before_script:
         # Ensure PostgreSQL server is ready - for other tests, PostreSQL has plenty of time to start
         - until docker exec barefoot-database sudo --user=postgres -- psql --command='select 1;'; do sleep 1; done
       script: docker exec barefoot-database /bin/bash /mnt/map/tools/test/run.sh
+    - env: NAME="Java Formatting"
+      jdk: oraclejdk8
+      before_install: true
+      install: mvn formatter:format
+      before_script: true
+      script:
+        - git diff-index --quiet HEAD --
+        - echo 'If this failed, run "mvn formatter:format" on your code using JDK 8+. See git diff for required changes.'
+      after_failure:
+        - git diff
 services:
   - docker
 before_install:
