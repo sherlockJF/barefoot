@@ -24,6 +24,15 @@ matrix:
         - python util/submit/batch.py --host localhost --port 1234 --file src/test/resources/com/bmwcarit/barefoot/matcher/x0001-001.json
       after_failure:
         - docker logs barefoot-matcher
+    - env: NAME="Java Format"
+      jdk: oraclejdk8
+      before_install: true
+      install: true
+      before_script: true
+      script: mvn formatter:validate
+      after_failure:
+        - mvn formatter:format
+        - git diff
     - env: NAME="Python Map Tools"
       install: true
       before_script:
@@ -33,7 +42,6 @@ matrix:
 services:
   - docker
 before_install:
-  - mvn --version
   - docker build -t barefoot-map ./map
   # Stop existing PostgreSQL - https://github.com/travis-ci/travis-ci/issues/4842#issuecomment-311527059
   - sudo service postgresql stop

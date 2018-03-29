@@ -104,13 +104,6 @@
 				<configuration>
 					<configFile>${project.basedir}/barefoot-style.xml</configFile>
 				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>validate</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 		<testResources>
