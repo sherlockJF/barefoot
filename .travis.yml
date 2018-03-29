@@ -33,6 +33,7 @@ matrix:
 services:
   - docker
 before_install:
+  - mvn --version
   - docker build -t barefoot-map ./map
   # Stop existing PostgreSQL - https://github.com/travis-ci/travis-ci/issues/4842#issuecomment-311527059
   - sudo service postgresql stop
